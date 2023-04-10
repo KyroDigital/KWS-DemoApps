@@ -5,10 +5,23 @@ import { getLocalStorage, setLocalStorage } from 'utils';
 import { authLoginAPI } from './auth.service';
 
 const API_URL = process.env.REACT_APP_API_URL;
+const projectId = process.env.REACT_APP_KYRO_PROJECT_ID;
 
 export const AUTH_TOKEN = '@token';
 
 const onRequest = (config) => {
+  if (!isObject(config?.customProps?.bodyData)) {
+    const obj = config.data
+      ? isObject(config.data)
+        ? { ...config.data, project_id: projectId }
+        : { ...JSON.parse(config.data), project_id: projectId }
+      : {};
+    config.data = { ...obj };
+  }
+  config.params = isObject(config.params) ? { ...config.params } : {};
+  if (config.method === 'get') {
+    config.params = { ...config.params, project_id: projectId };
+  }
   const headers = {
     Accept: 'application/json',
     'x-api-key': process.env.REACT_APP_AUTH_KEY,
@@ -69,7 +82,14 @@ const onResponseError = async (error) => {
           return instance(error.config);
         }
       } catch (_error) {
-        return Promise.reject(_error);
+        if (_error.response && _error.response.status === 401) {
+          const res = await authLoginAPI();
+          if (res) {
+            return instance.request(error.config);
+          }
+        } else {
+          return Promise.reject(_error);
+        }
       }
     } else if (response.data.access === 'not_authorized') {
       const res = await authLoginAPI();
