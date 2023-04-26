@@ -25,13 +25,23 @@
 
 ## How to retrieve your Kyro Application ID and set up the value in codes
 
-- Go to [KWS Console](https://console.kws.kyro.co).
+- Go to [KWS Builder](https://builder.kyro.co/).
 - Sign Up for new user, login if already registered.
-- Go to [Channels](https://builder.kyro.co/channels) under Build from the Sidebar.
+- Go to [Applications](https://builder.kyro.co/applications) under Build from the Sidebar.
 - Click on your channel to see the detail view.
 - Copy the _Channel ID_ from the bottom of the screen.
 
 - Paste the value from Channel ID into REACT_APP_KYRO_APP_ID in your .env file. Restart your local server after replacing keys for changes to take place.
+
+## How to retrieve your Project ID and set up the value in codes
+
+- Go to [KWS Console](https://console.kyro.co/).
+- Sign Up for new user, login if already registered.
+- Go to [Project](https://console.kws.kyro.co/projects) under Settings from the Sidebar.
+- Click on your project and there is project id of the bottom of the page.
+- Copy the project ID from the bottom of the screen.
+
+- Paste the value from Project ID into REACT_APP_KYRO_PROJECT_ID in your .env file. Restart your local server after replacing keys for changes to take place.
 
 ## How to build
 
