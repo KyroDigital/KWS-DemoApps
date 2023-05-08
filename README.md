@@ -27,11 +27,11 @@
 
 - Go to [KWS Console](https://console.kws.kyro.co).
 - Sign Up for new user, login if already registered.
-- Go to [Channels](https://builder.kyro.co/channels) under Build from the Sidebar.
-- Click on your channel to see the detail view.
-- Copy the _Channel ID_ from the bottom of the screen.
+- Go to [Websites](https://builder.kyro.co/build/websites) under Build from the Sidebar.
+- Click on your website to see the detail view.
+- Copy the _Website ID_ from the bottom of the screen.
 
-- Paste the value from Channel ID into REACT_APP_KYRO_APP_ID in your .env file. Restart your local server after replacing keys for changes to take place.
+- Paste the value from Website ID into REACT_APP_KYRO_APP_ID in your .env file. Restart your local server after replacing keys for changes to take place.
 
 ## How to build
 
