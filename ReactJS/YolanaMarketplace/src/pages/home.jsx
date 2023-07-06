@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NftObject, Dropdown, Slider, Button, Loader } from 'components';
-import { getNftTypesAPI, getProductsAPI } from 'services';
+import { getNftTypesAPI, getNftsAPI } from 'services';
 import { createOptions, isArray, isObject, mergeRecords } from 'helpers';
 import { useAuth } from 'hooks';
 
@@ -34,7 +34,7 @@ const Home = () => {
   }, [page]);
 
   const fetchProducts = async ({ page }) => {
-    const res = await getProductsAPI({ page, userId: developerUser.id });
+    const res = await getNftsAPI({ page, userId: developerUser.id });
     if (isArray(res)) {
       const data = mergeRecords(res, nfts);
       setNfts(data);

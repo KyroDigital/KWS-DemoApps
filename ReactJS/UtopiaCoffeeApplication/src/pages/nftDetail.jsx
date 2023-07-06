@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
 import { useNavigate, useParams } from 'react-router-dom';
 import { UserObject, Loader, Button, ObjectBox, Input } from 'components';
-import { getProductDetailsAPI, mintNftAPI } from 'services';
+import { getNftDetailsAPI, mintNftAPI } from 'services';
 import {
   convertPropertiesAttributes,
   ifExist,
@@ -32,8 +32,9 @@ const NFTDetail = function () {
 
   useEffect(() => {
     const initProcess = async () => {
-      const res = await getProductDetailsAPI({
+      const res = await getNftDetailsAPI({
         productId: params.id,
+        userId: developerUser.id,
       });
       setNftDetails(res);
       setIsLoading(false);

@@ -43,10 +43,14 @@ const onRequest = (config) => {
   const authData = getLocalStorage(AUTH_TOKEN);
   if (authData) {
     const accessToken = authData.split('-')[0];
-    const cipherText = AES.encrypt(accessToken, 'projBENTOsecKEY42').toString();
+    const cipherText = AES.encrypt(
+      accessToken,
+      process.env.REACT_APP_PASS_PHRASE,
+    ).toString();
     headers['Auth-Token'] = cipherText;
   }
   config.headers = headers;
+  config.retry -= 1;
   return config;
 };
 
@@ -60,6 +64,9 @@ const onResponse = (response) => {
 
 const onResponseError = async (error) => {
   const { response } = error;
+  if (error.config.retry < 1) {
+    return Promise.reject(error);
+  }
   if (response && response.status === 401) {
     if (response.data.access === 'token_expired') {
       const authData = getLocalStorage(AUTH_TOKEN);
@@ -113,6 +120,7 @@ const instance = setupInterceptorsTo(
     headers: {
       'Content-Type': 'application/json',
     },
+    retry: 2,
   }),
 );
 

@@ -72,7 +72,7 @@ const validationSchema = yup.object().shape({
 
 const CreateNFT = () => {
   const navigate = useNavigate();
-  const { currentUser, developerUser } = useAuth();
+  const { currentUser, developerUser, userExtraObj } = useAuth();
   const { showToast } = useGlobalElements();
   const [isSubmit, setIsSubmit] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -132,7 +132,9 @@ const CreateNFT = () => {
     });
     return {
       user_id: currentUser.kyro_id,
-      mintable_account_id: developerUser.default_account.sage_id,
+      mintable_account_id: userExtraObj.default_account.sage_id,
+      account_ids: developerUser.default_account.sage_id,
+      account_shares: '100',
       nft_type: values.type,
       mintable_category_id: values.chain,
       name: values.name,

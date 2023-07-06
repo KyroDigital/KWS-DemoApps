@@ -1,6 +1,7 @@
 export const apiPaths = {
   createNft: '/nft',
   mintNft: '/nft-mint',
+  nft: '/nft',
   getProducts: '/products',
   authLogin: '/auth/login',
   getUser: '/developer/users',

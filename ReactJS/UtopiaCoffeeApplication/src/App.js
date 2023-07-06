@@ -9,12 +9,12 @@ import {
   ThemeContextProvider,
 } from 'context';
 import { useEffect, useState } from 'react';
-import { getAppObject } from 'services/app.service';
 import { isObject } from 'helpers';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from '@firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { FIREBASE_CONFIG } from 'utils';
+import { getAppObject } from 'services';
 
 const app = initializeApp(FIREBASE_CONFIG);
 export const auth = getAuth(app);

@@ -21,6 +21,7 @@
 
 - Paste the value from Key column from the generated key into REACT_APP_AUTH_KEY in your .env file.
 - Paste the value from Secret column from the generated key into REACT_APP_AUTH_SECRET in your .env file.
+- Paste the value from Pass Phrase column from the generated key into REACT_APP_PASS_PHRASE in your .env file.
 - Restart your local server after replacing keys for changes to take place.
 
 ## How to retrieve your Kyro Application ID and set up the value in codes

@@ -30,7 +30,7 @@ export const mintNftAPI = ({ params }) => {
     });
 };
 
-export const getProductsAPI = ({ page, userId }) => {
+export const getNftsAPI = ({ page, userId }) => {
   const params = {
     limit: 12,
     page: page || 1,
@@ -42,10 +42,10 @@ export const getProductsAPI = ({ page, userId }) => {
     is_kyro_test: '1',
   };
   return api
-    .get(apiPaths.getProducts, { params })
+    .get(apiPaths.nft, { params })
     .then((response) => {
       console.log({ response });
-      if (isApiSuccess(response)) return response.products;
+      if (isApiSuccess(response)) return response.nfts;
       else return null;
     })
     .catch((error) => {
@@ -53,16 +53,15 @@ export const getProductsAPI = ({ page, userId }) => {
     });
 };
 
-export const getProductDetailsAPI = ({ productId }) => {
+export const getNftDetailsAPI = ({ productId, userId }) => {
   const params = {
-    product_id: productId,
-    user_id: '3737370',
+    user_id: userId,
   };
   return api
-    .get(`/products/${productId}`, params)
+    .get(`${apiPaths.nft}/${productId}`, { params })
     .then((response) => {
       console.log({ response });
-      if (isApiSuccess(response)) return response.product;
+      if (isApiSuccess(response)) return response.nft;
       else return null;
     })
     .catch((error) => {
